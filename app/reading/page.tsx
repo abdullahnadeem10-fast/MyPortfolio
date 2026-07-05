@@ -1,4 +1,7 @@
 import { Fraunces } from "next/font/google";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import ReadingContent from "@/components/ReadingContent";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -8,8 +11,10 @@ const fraunces = Fraunces({
 
 export default function ReadingPage() {
   return (
-    <div className={`${fraunces.variable} font-serif min-h-screen bg-background`}>
-      {/* TODO: Reading page content */}
+    <div className={`${fraunces.variable} font-sans`}>
+      <Nav />
+      <ReadingContent />
+      <Footer />
     </div>
   );
 }

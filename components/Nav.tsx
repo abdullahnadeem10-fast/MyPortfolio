@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -9,6 +12,8 @@ const navLinks = [
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -21,25 +26,29 @@ export default function Nav() {
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.label}>
-              {link.href.startsWith("#") ? (
-                <a
-                  href={link.href}
-                  className="text-sm font-medium text-text-secondary transition-colors hover:text-mint-primary"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  href={link.href}
-                  className="text-sm font-medium text-text-secondary transition-colors hover:text-mint-primary"
-                >
-                  {link.label}
-                </Link>
-              )}
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive =
+              !link.href.startsWith("#") && pathname === link.href;
+            const linkClassName = `text-sm font-medium transition-colors ${
+              isActive
+                ? "text-mint-primary"
+                : "text-text-secondary hover:text-mint-primary"
+            }`;
+
+            return (
+              <li key={link.label}>
+                {link.href.startsWith("#") ? (
+                  <a href={link.href} className={linkClassName}>
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link href={link.href} className={linkClassName}>
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         <a
