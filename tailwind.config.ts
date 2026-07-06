@@ -10,16 +10,25 @@ const config: Config = {
     extend: {
       colors: {
         background: "#FFFFFF",
-        surface: "#F4FBF8",
-        "mint-primary": "#3FBF8F",
-        "mint-dark": "#1F8F65",
-        "text-primary": "#1A1F1D",
-        "text-secondary": "#5B6B65",
-        border: "#E1EFE8",
+        surface: "#E0E1DD",
+        "mint-primary": "#1B263B",
+        "mint-dark": "#0D1B2A",
+        "text-primary": "#0D1B2A",
+        "text-secondary": "#415A77",
+        border: "#778DA9",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         serif: ["var(--font-fraunces)", "Georgia", "serif"],
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 30s linear infinite",
       },
     },
   },

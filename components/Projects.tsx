@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { projects } from "@/data/projects";
 
 const fadeUp = {
@@ -37,6 +38,43 @@ function GitHubIcon() {
   );
 }
 
+function StatBadge({ metric }: { metric: { value: string; label: string } }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [count, setCount] = useState(0);
+  const isNumeric = !isNaN(Number(metric.value));
+  const target = Number(metric.value);
+
+  useEffect(() => {
+    if (isInView && isNumeric) {
+      let start = 0;
+      const duration = 1000;
+      const startTime = performance.now();
+      
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 4);
+        setCount(Math.floor(easeOut * target));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setCount(target);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, isNumeric, target]);
+
+  return (
+    <div ref={ref} className="ml-auto flex shrink-0 items-center gap-2 rounded-lg bg-mint-primary px-3 py-1.5 text-sm font-bold text-white shadow-sm">
+      <span className="text-base sm:text-lg leading-none">{isNumeric ? count : metric.value}</span>
+      <span className="text-[10px] sm:text-xs font-medium opacity-90 uppercase tracking-wider">{metric.label}</span>
+    </div>
+  );
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="bg-background">
@@ -67,9 +105,12 @@ export default function Projects() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="flex flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <h3 className="text-lg font-bold text-text-primary sm:text-xl">
-                {project.title}
-              </h3>
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-lg font-bold text-text-primary sm:text-xl">
+                  {project.title}
+                </h3>
+                {project.metric && <StatBadge metric={project.metric} />}
+              </div>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
                 <span className="text-xs font-medium text-mint-primary">
@@ -89,7 +130,7 @@ export default function Projects() {
 
               <ul className="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-text-secondary sm:text-base">
                 {project.description.map((item) => (
-                  <li key={item} className="flex gap-2">
+                  <li key={item.slice(0, 40)} className="flex gap-2">
                     <span
                       aria-hidden="true"
                       className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mint-primary"

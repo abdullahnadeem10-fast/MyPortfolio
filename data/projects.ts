@@ -4,6 +4,7 @@ export type Project = {
   year: string;
   description: string[];
   link: string;
+  metric?: { value: string; label: string };
 };
 
 export const projects: Project[] = [
@@ -17,6 +18,7 @@ export const projects: Project[] = [
       "Authored 20 OLAP queries to extract actionable business intelligence insights from large-scale transactional data.",
     ],
     link: "https://github.com/abdullahnadeem10-fast",
+    metric: { value: "20", label: "OLAP Queries" },
   },
   {
     title: "NLP/PDC — Retail Product Entity Linking",
@@ -34,5 +36,6 @@ export const projects: Project[] = [
       "Designed for high-throughput POS transaction stream processing with low latency across distributed compute nodes.",
     ],
     link: "https://github.com/abdullahnadeem10-fast",
+    metric: { value: "TBD", label: "Accuracy" },
   },
 ];

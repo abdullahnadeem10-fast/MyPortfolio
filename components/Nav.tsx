@@ -19,10 +19,10 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="flex h-10 w-10 items-center justify-center rounded-lg bg-mint-primary text-sm font-bold text-white transition-colors hover:bg-mint-dark"
+          className="flex h-10 w-auto px-3 items-center justify-center rounded-lg bg-mint-primary text-sm font-bold text-white transition-colors hover:bg-mint-dark"
           aria-label="Home"
         >
-          AN
+          MAN
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

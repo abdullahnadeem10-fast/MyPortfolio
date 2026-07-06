@@ -5,7 +5,6 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
-import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
         <Skills />
         <Timeline />
         <Projects />
-        <Achievements />
         <Contact />
       </main>
       <Footer />
