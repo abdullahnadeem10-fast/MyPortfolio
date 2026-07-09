@@ -9,8 +9,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Abdullah Nadeem",
-  description: "Personal portfolio of Muhammad Abdullah Nadeem",
+  title: "Muhammad Abdullah Nadeem — Data Science & Software Developer",
+  description: "Personal portfolio of Muhammad Abdullah Nadeem. Showcasing data science, AI automation, and full-stack development projects.",
+  openGraph: {
+    title: "Muhammad Abdullah Nadeem — Data Science & Software Developer",
+    description: "Personal portfolio of Muhammad Abdullah Nadeem. Showcasing data science, AI automation, and full-stack development projects.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

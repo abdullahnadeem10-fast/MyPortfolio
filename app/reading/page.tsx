@@ -1,7 +1,12 @@
+import { Metadata } from "next";
 import { Fraunces } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ReadingContent from "@/components/ReadingContent";
+
+export const metadata: Metadata = {
+  title: "Reading — Muhammad Abdullah Nadeem",
+};
 
 const fraunces = Fraunces({
   subsets: ["latin"],

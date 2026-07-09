@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -46,10 +47,11 @@ function BookIcon() {
 }
 
 function BookCover({ coverUrl, title }: { coverUrl: string; title: string }) {
+  const [error, setError] = useState(false);
   const coverClasses =
     "h-56 w-40 shrink-0 overflow-hidden rounded-xl border-2 border-mint-primary sm:h-64 sm:w-44";
 
-  if (!coverUrl) {
+  if (!coverUrl || error) {
     return (
       <div
         className={`${coverClasses} flex items-center justify-center bg-surface`}
@@ -68,6 +70,7 @@ function BookCover({ coverUrl, title }: { coverUrl: string; title: string }) {
         fill
         className="object-cover"
         sizes="(max-width: 768px) 176px, 160px"
+        onError={() => setError(true)}
       />
     </div>
   );
@@ -141,7 +144,7 @@ export default function ReadingContent() {
                   <p className="mt-2 text-sm font-medium text-mint-primary sm:text-base">
                     {book.author}
                   </p>
-                  <p className="mt-5 text-base leading-relaxed text-text-secondary sm:text-lg sm:leading-relaxed">
+                  <p className="mt-5 whitespace-pre-line text-base leading-relaxed text-text-secondary sm:text-lg sm:leading-relaxed">
                     {book.summary}
                   </p>
                   <p className="mt-5 border-l-2 border-mint-primary pl-4 text-sm italic leading-relaxed text-text-secondary sm:text-base">

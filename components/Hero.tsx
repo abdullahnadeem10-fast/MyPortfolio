@@ -46,7 +46,7 @@ export default function Hero() {
               <a
                 href="/Abdullah_CV.pdf"
                 download
-                className="rounded-lg border border-mint-primary bg-background px-6 py-3 text-sm font-medium text-mint-dark transition-colors hover:bg-surface"
+                className="rounded-lg border-2 border-mint-primary bg-transparent px-6 py-3 text-sm font-bold text-mint-primary transition-colors hover:bg-mint-primary hover:text-white"
               >
                 Download CV
               </a>
