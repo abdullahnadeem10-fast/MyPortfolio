@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TerminalVisual from "@/components/TerminalVisual";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -60,14 +61,7 @@ export default function Hero() {
             variants={fadeUp}
             className="flex justify-center"
           >
-            <div
-              className="flex h-64 w-64 shrink-0 items-center justify-center rounded-2xl border-2 border-mint-primary bg-surface sm:h-72 sm:w-72 lg:h-80 lg:w-80"
-              aria-label="Profile photo placeholder"
-            >
-              <span className="text-sm font-medium text-text-secondary">
-                Photo
-              </span>
-            </div>
+            <TerminalVisual />
           </motion.div>
         </div>
       </div>
